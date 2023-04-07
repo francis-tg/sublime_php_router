@@ -25,6 +25,10 @@ class Router extends RouteResolve
     {
         return self::addHandler($path, "PATCH", $handler);
     }
+    public function update(string $path, $handler)
+    {
+        return self::addHandler($path, "UPDATE", $handler);
+    }
     public static function send(int $statusCode){
        return http_response_code($statusCode);
     }
