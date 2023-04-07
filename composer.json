@@ -1,0 +1,19 @@
+{
+    "name": "francis/sublime-php",
+    "description": "New Framework",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Francis\\SublimePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CiscoDev",
+            "email": "franc9885@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
