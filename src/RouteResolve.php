@@ -1,7 +1,7 @@
 <?php
 namespace Francis\SublimePhp;
 
-class RouteResolve
+class RouteResolve extends Cors
 {
     private $request_uri;
     private $request_method;
@@ -14,6 +14,12 @@ class RouteResolve
         $this->request_method = $_SERVER["REQUEST_METHOD"];
 
     }
+    /**
+     * Summary of extract_params_from_url
+     * @param array $pattern_path
+     * @param string $uri_path
+     * @return array
+     */
     protected function extract_params_from_url(array $pattern_path, string $uri_path): array
     {
         $params = [];
@@ -28,23 +34,41 @@ class RouteResolve
 
         return $params;
     }
-
+    /**
+     * Summary of is_param
+     * @param string $part
+     * @return bool
+     */
     protected function is_param(string $part): bool
     {
         return preg_match('/^\:[^\/]+\:$/', $part) === 1;
     }
-
+    /**
+     * Summary of extract_param_name
+     * @param string $part
+     * @return string
+     */
     protected function extract_param_name(string $part): string
     {
         return trim($part, ':');
     }
-
+    /**
+     * Summary of extract_param_value
+     * @param int $i
+     * @param string $uri_path
+     * @return string|null
+     */
     protected function extract_param_value(int $i, string $uri_path): ?string
     {
         $uri_parts = explode('/', $uri_path);
         return $uri_parts[$i] ?? null;
     }
-
+    /**
+     * Summary of uri_matches_pattern
+     * @param array $pattern_path
+     * @param string $uri_path
+     * @return bool
+     */
     protected function uri_matches_pattern(array $pattern_path, string $uri_path): bool
     {
         $pattern_parts = array_filter($pattern_path, [$this, 'is_param']);
@@ -65,6 +89,14 @@ class RouteResolve
 
         return true;
     }
+    /**
+ * Summary of addHandler
+ * @param string $path
+ * @param string $method
+ * @param mixed $handler
+ * @return array
+ */
+
     public function addHandler(string $path, string $method, $handler)
     {
         $parse_uri = parse_url($this->request_uri, PHP_URL_PATH);
@@ -81,7 +113,12 @@ class RouteResolve
                 "body" => $_POST,
             ];
         }
+        return [];
     }
+    /**
+     * Summary of run
+     * @return void
+     */
     public function run()
     {
         $callback = null;
