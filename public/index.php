@@ -1,5 +1,7 @@
 <?php 
 require_once "../vendor/autoload.php";
+
+use Cisco\Sublime\middlewares\Validation;
 use Cisco\SublimeDB\Db;
 use Cisco\SublimeRequest\Request;
 use Francis\SublimePhp\Cors;
@@ -9,13 +11,12 @@ $router = new Router();
 
 new Db();
 new Cors();
+$validation_middleware = new Validation();
 
 $router->get("/", function ($params) {
     View::view("index");
 });
-$middleware = function ($req) {
-    var_dump($req);
-};
+
 $router->post("/user/:id:", function ($params) {
     var_dump($params);
 });
@@ -34,7 +35,7 @@ $router->post("/login", function ($request) {
 
 $router->get("/register", function ($request) {
     View::view("register");
-},[$middleware]);
+},[$validation_middleware,"validateField"]);
 $router->post("/register", function ($request) {
     $req = new Request();
     return $req->logUser($request);

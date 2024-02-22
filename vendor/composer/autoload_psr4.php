@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Francis\\SublimePhp\\' => array($baseDir . '/src'),
+    'Cisco\\Sublime\\' => array('/'),
     'Cisco\\SublimeRequest\\' => array($baseDir . '/requests'),
     'Cisco\\SublimeDB\\' => array($baseDir . '/database'),
 );

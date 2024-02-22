@@ -13,6 +13,7 @@ class ComposerStaticInit3cc30b33f3655d1da117bc70b327a96e
         ),
         'C' => 
         array (
+            'Cisco\\Sublime\\' => 14,
             'Cisco\\SublimeRequest\\' => 21,
             'Cisco\\SublimeDB\\' => 16,
         ),
@@ -22,6 +23,10 @@ class ComposerStaticInit3cc30b33f3655d1da117bc70b327a96e
         'Francis\\SublimePhp\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Cisco\\Sublime\\' => 
+        array (
+            0 => '/',
         ),
         'Cisco\\SublimeRequest\\' => 
         array (
