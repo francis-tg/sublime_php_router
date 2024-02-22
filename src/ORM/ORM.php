@@ -16,7 +16,7 @@ class ORM extends db
      * @return void
      */
 
-    public function createTable(string $table_name, array $fields)
+    public function createTable(string $table_name, array $fields):void
     {
         // Start building the SQL query
         $query = "CREATE TABLE IF NOT EXISTS $table_name (\n";
@@ -62,11 +62,17 @@ class ORM extends db
      * @param string $value
      * @return void
      */
-    public function addColumn(string $table_name, string $field_name, string $value)
+    public function addColumn(string $table_name, string $field_name, string $value):bool
     {
-        $query = "ALTER TABLE $table_name ADD IF NOT EXISTS $field_name $value";
-        Cli::consoleLog("info", $query);
-        $this->pdo->exec($query);
+        try {
+            $query = "ALTER TABLE $table_name ADD IF NOT EXISTS $field_name $value";
+            Cli::consoleLog("info", $query);
+            $this->pdo->exec($query);
+            return true;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return false;
+        }
     }
     /**
      * Summary of select
@@ -78,7 +84,7 @@ class ORM extends db
      * @param array $include
      * @return mixed
      */
-    public function select(string $table, array $fields = ["*"], array $where = [], string $order_by = "", string $limit = "", array $include = [])
+    public function select(string $table, array $fields = ["*"], array $where = [], string $order_by = "", string $limit = "", array $include = []):?array
     {
         $query = "SELECT " . implode(", ", $fields) . " FROM " . $table;
         if (count($include) > 0) {
