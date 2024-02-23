@@ -11,7 +11,8 @@ $router = new Router();
 
 new Db();
 new Cors();
-$validation_middleware = new Validation();
+
+const validate = new Validation();
 
 $router->get("/", function ($params) {
     View::view("index");
@@ -35,11 +36,11 @@ $router->post("/login", function ($request) {
 
 $router->get("/register", function ($request) {
     View::view("register");
-},[$validation_middleware,"validateField"]);
+});
 $router->post("/register", function ($request) {
     $req = new Request();
-    return $req->logUser($request);
-});
+    return $req->registerUser($request);
+},[[validate,"validateField"]]);
 View::clearCache();
 
 $router->run();

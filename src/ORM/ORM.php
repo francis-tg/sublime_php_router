@@ -140,13 +140,13 @@ class ORM extends db
             }
             $query .= $joins;
         }
-
+        
         if (!empty($where)) {
             $joins_where = "";
             
             // On extrait le premier élément du tableau $where
             $first_condition = array_shift($where);
-            
+            //var_dump($first_condition);
             // On vérifie que l'élément extrait n'est pas vide et est bien un tableau
             if (!empty($first_condition) && is_array($first_condition)) {
                 // On récupère le nom de la première colonne et sa valeur
@@ -155,7 +155,6 @@ class ORM extends db
                 
                 // On construit la clause WHERE pour le premier élément
                 $joins_where .= " WHERE $extractfirst_column = '$extractfirst_value'";
-                
                 // On parcourt les autres conditions du tableau $where
                 foreach ($where as $column => $value) {
                     // On vérifie que la condition est bien un tableau
@@ -170,6 +169,7 @@ class ORM extends db
                 }
             }
             // On ajoute la clause WHERE construite à la requête
+            //var_dump($joins_where);
             $query .= $joins_where;
         }
 

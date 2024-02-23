@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
@@ -27,18 +27,13 @@
     <div class="m-auto">
         <div class="col-md-6">
             <h2>
-                Register
+                Login
             </h2>
             <form action="" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp">
-                    <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
@@ -48,6 +43,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
+            <span>
+                Vous n'avez pas de compte ? <a href="/register">créez en un</a>
+            </span>
         </div>
     </div>
 </div>

@@ -199,25 +199,28 @@ class RouteResolve extends Cors
      */
     protected function addHandlerWithOptionalMiddleware(string $path, string $method, $handler, ?array $middlewares = null)
     {
-        $this->addHandler($path, $method, function () use ($handler, $middlewares) {
+        $this->addHandler($path, $method, function ($h) use ($handler, $middlewares) {
             if (!empty($middlewares)) {
                 foreach ($middlewares as $middleware) {
                     $this->executeMiddleware($middleware);
+                    //$handler($this->handlers);
                 }
             }
-            
-            $handler($this->handlers);
+            $handler(array_shift($h));
         });
+        
     }
 
     /**
      * Exécute le middleware avec les arguments nécessaires.
-     * @param callable $middleware Le middleware à exécuter.
+     * @param mixed $middleware Le middleware à exécuter.
      */
-    protected function executeMiddleware(callable $middleware)
+    protected function executeMiddleware(mixed $middleware)
     {
         // Exécuter le middleware avec les arguments nécessaires
-        $middleware($this->handlers);
+        //$middleware($this->handlers);
+        $h = array_shift($this->handlers);
+        call_user_func($middleware,$h);
     }
     /**
      * Summary of run
@@ -226,10 +229,10 @@ class RouteResolve extends Cors
     public function run()
     {
          $callback = null;
-        $newHanler = [];
+        $newHandler = [];
         foreach ($this->handlers as $key => $value) {
             if ($value["path"] === $this->request_uri && $value["method"] === $this->request_method) {
-                array_push($newHanler, $value);
+                array_push($newHandler, $value);
                 $callback = $value["handler"];
             } else {
                 $callback = null;
@@ -239,7 +242,7 @@ class RouteResolve extends Cors
             echo "<pre> Url <b>" . $this->request_uri . "</b> not found </pre>";
             return;
         }
-        $callback && call_user_func_array($callback, $newHanler);
+        $callback && call_user_func($callback, $newHandler);
     }
 
 }

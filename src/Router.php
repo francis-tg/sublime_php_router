@@ -48,6 +48,10 @@ class Router extends View
         return print_r($value);
 
     }
+    public static function redirect(string $path){
+        header("Location: $path");
+        exit;
+    }
 
     
 }
