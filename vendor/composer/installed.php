@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'francis/sublime-php',
-        'pretty_version' => 'dev-middleware',
-        'version' => 'dev-middleware',
-        'reference' => '93a99cadb4fb196a911a5bfb55a4f17a68d38259',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '8fbfd4cae6915dfe890edfa3f7b817222d8a82cb',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'francis/sublime-php' => array(
-            'pretty_version' => 'dev-middleware',
-            'version' => 'dev-middleware',
-            'reference' => '93a99cadb4fb196a911a5bfb55a4f17a68d38259',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '8fbfd4cae6915dfe890edfa3f7b817222d8a82cb',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

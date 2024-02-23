@@ -8,7 +8,7 @@
             "Francis\\SublimePhp\\": "src/",
             "Cisco\\SublimeRequest\\":"requests/",
             "Cisco\\SublimeDB\\":"database/",
-            "Cisco\\Sublime\\":"/"
+            "Cisco\\Sublime\\":""
         }
     },
     "authors": [

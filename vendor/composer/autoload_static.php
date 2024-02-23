@@ -26,7 +26,7 @@ class ComposerStaticInit3cc30b33f3655d1da117bc70b327a96e
         ),
         'Cisco\\Sublime\\' => 
         array (
-            0 => '/',
+            0 => __DIR__ . '/../..' . '/',
         ),
         'Cisco\\SublimeRequest\\' => 
         array (
